@@ -12,25 +12,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button, buttonVariants } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import UserAvailableCreditsBadge from "./UserAvailableCreditsBadge";
 
 const routes = [
   {
-    href: "/",
+    href: "",
     label: "Home",
     icon: HomeIcon,
   },
   {
-    href: "/workflows",
+    href: "workflows",
     label: "Workflows",
     icon: Workflow,
   },
   {
-    href: "/credentials",
+    href: "credentials",
     label: "Credentials",
     icon: ShieldCheckIcon,
   },
   {
-    href: "/billing",
+    href: "billing",
     label: "Billing",
     icon: CoinsIcon,
   },
@@ -56,11 +57,12 @@ export function MobileSidebar() {
             side={"left"}
           >
             <Logo />
+            <UserAvailableCreditsBadge />
             <div className="flex flex-col gap-1">
               {routes.map((route) => (
                 <Link
                   key={route.href}
-                  href={route.href}
+                  href={`/${route.href}`}
                   className={buttonVariants({
                     variant:
                       activeRoute.href === route.href
@@ -99,12 +101,14 @@ const DesktopSidebar = () => {
       >
         <Logo />
       </div>
-      <div className="p-2">TODO CREDITS</div>
+      <div className="p-2">
+        <UserAvailableCreditsBadge />
+      </div>
       <div className="flex flex-col p-2">
         {routes.map((route) => (
           <Link
             key={route.href}
-            href={route.href}
+            href={`/${route.href}`}
             className={buttonVariants({
               variant:
                 activeRoute.href === route.href
